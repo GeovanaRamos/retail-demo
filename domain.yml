@@ -98,20 +98,43 @@ slots:
     - type: custom
 responses:
   utter_greet:
-  - buttons:
-    - payload: Check status of my order
-      title: Check status of my order
-    - payload: Start a return
-      title: Start a return
-    - payload: Check inventory
-      title: Check inventory
-    - payload: Subscribe to product updates
-      title: Subscribe to product updates
-    text: Hi there! I'm a demo bot from Rasa to help you with ordering shoes. How can I help you?
+  - custom:
+    attachment:
+      type: "template"
+      payload:
+        template_type: "generic"
+        elements:
+        - default_action:
+            type: "web_url" # web_url
+            url: "https://google.com"
+          image_url: "https://source.unsplash.com/random/4000x400/?portrait"
+          title: Google Item
+          subtitle: "Test pointing to Google"
+          buttons:
+            - title: Check status of my order
+              payload: Check status of my order
+              type: "postback" # web_url
+            - title: Start a return
+              payload: Start a return
+              type: "postback" # web_url
+        - default_action:
+            type: "web_url" # web_url
+            url: "https://facebook.com"
+          image_url: "https://source.unsplash.com/random/4000x400/?portrait"
+          title: Facebook Item
+          subtitle: "Test pointing to Facebook"
+          buttons:
+            - title: Check inventory
+              payload: Check inventory
+              type: "postback" # web_url
+            - title: Subscribe to product updates
+              payload: Subscribe to product updates
+              type: "postback" # web_url
   utter_default:
   - text: I don't think I understand. Can you try providing more detail?
   - text: um, what did you just say to me?
   - text: beep, boop, don't understand
+    image: "https://source.unsplash.com/random/4000x400/?portrait"
   utter_ask_order_status_form_email:
   - text: I can help you find the status of your order. What's your email address so I can find the order?
   utter_order_status:
